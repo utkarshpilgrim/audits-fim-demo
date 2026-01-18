@@ -1,0 +1,6 @@
+## Exclude specific legitimate executables (e.g., /usr/bin/passwd, /usr/sbin/useradd)
+-a never,exit -F exe=/usr/bin/passwd -F path=/etc/shadow -F perm=r
+-a never,exit -F exe=/usr/sbin/useradd -F path=/etc/shadow -F perm=r
+
+## Exclude root's legitimate actions while alerting on others
+-a always,exit -F path=/etc/shadow -F perm=r -F auid>=1000 -F auid!=4294967295 -k suspicious_shadow_read
