@@ -1,0 +1,15 @@
+name: CI Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Lint Bash Scripts
+        run: |
+          sudo apt-get install -y shellcheck
+          shellcheck scripts/*.sh
+      - name: Check Config Syntax
+        run: echo "Placeholder: Add augenrules --check here if needed"
